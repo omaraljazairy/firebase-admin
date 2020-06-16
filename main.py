@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import auth
 import click
 
+
 @click.group()
 def main():
     pass
@@ -32,7 +33,7 @@ def user(uid):
         print_style(text)
 
 @main.command()
-@click.option('--id', prompt="select a function to execute:", type=click.IntRange(1,2))
+@click.option('--id', prompt="select a function to execute", type=click.IntRange(1,2))
 def menu(id):
     """temporary menu to start the app"""
     if id == 1:
@@ -52,5 +53,5 @@ if __name__ == '__main__':
     for x in funcs:
         y += 1
         text = f'[{y}] -  {x}'
-        print_style(text, fg='yellow')
+        print_style(text, fg='cyan')
     menu()
