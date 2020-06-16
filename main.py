@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import auth
 import click
-from colorama import Style, Fore, Back
+from colorama import Style, Fore, Back, init
 
 @click.group()
 def main():
@@ -48,6 +48,7 @@ def menu(id):
 # user(sys.argv[1])
 if __name__ == '__main__':
     # initialize firebase connection
+    init(autoreset=True)
     default_app = firebase_admin.initialize_app()
     funcs = ['users', 'user']
     y = 0
