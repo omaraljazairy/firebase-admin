@@ -6,7 +6,7 @@ import click
 def main():
     pass
 
-def print_style(text, fg='white', bg='black', blink=False, bold=True):
+def print_style(text, fg='white', bg='black', blink=False, bold=False):
     return click.echo(click.style((f'{text}'), fg=fg, bg=bg, blink=blink, bold=bold))
 
 @main.command()
@@ -52,5 +52,5 @@ if __name__ == '__main__':
     for x in funcs:
         y += 1
         text = f'[{y}] -  {x}'
-        print_style(text, fg='yellow', bold=False)
+        print_style(text, fg='yellow')
     menu()
