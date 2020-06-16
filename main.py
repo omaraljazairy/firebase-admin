@@ -1,14 +1,15 @@
 import firebase_admin
 from firebase_admin import auth
 import click
-
+from colorama import Style, Fore, Back
 
 @click.group()
 def main():
     pass
 
-def print_style(text, fg='white', bg='black', blink=False, bold=False):
-    return click.echo(click.style((f'{text}'), fg=fg, bg=bg, blink=blink, bold=bold))
+def print_style(text, fg=Fore.WHITE, bg=Back.BLACK, style=Style.BRIGHT):
+    # return click.echo(click.style((f'{text}'), fg=fg, bg=bg, blink=blink, bold=bold))
+    return print(style + fg + bg + text)
 
 @main.command()
 def users():
@@ -53,5 +54,6 @@ if __name__ == '__main__':
     for x in funcs:
         y += 1
         text = f'[{y}] -  {x}'
-        print_style(text, fg='cyan')
+        # print(Style.BRIGHT + Fore.YELLOW + text)
+        print_style(text, fg=Fore.GREEN)
     menu()
