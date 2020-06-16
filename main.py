@@ -16,7 +16,6 @@ def users():
     for user in page.users:
         user_email = user.email if hasattr(user, 'email') else None
         user_displayName = user.displayName if hasattr(user, 'displayName') else None
-        # click.echo(click.style((f'{user.uid}, - , {user_email} - {user_displayName}'), fg='white', bg='black', blink=False, bold=False))
         text = f'{user.uid}, - , {user_email} - {user_displayName}'
         print_style(text)
 
@@ -31,7 +30,6 @@ def user(uid):
     for k,v in user.__dict__['_data'].items():
         text = f'{k} -  {v}'
         print_style(text)
-        # click.echo(click.style((f'{k}, - , {v}'), fg='white', bg='black', blink=False, bold=False))
 
 @main.command()
 @click.option('--id', prompt="select a function to execute:", type=click.IntRange(1,2))
@@ -53,8 +51,6 @@ if __name__ == '__main__':
     y = 0
     for x in funcs:
         y += 1
-        # click.echo(click.style((f'{y}, - , {x}'), fg='yellow', bg='black', blink=False, bold=True))
-        # text = str(y) + ' - ' + str(x)
         text = f'[{y}] -  {x}'
-        print_style(text, fg='yellow', bold=True)
+        print_style(text, fg='yellow', bold=False)
     menu()
