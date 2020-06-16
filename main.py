@@ -3,12 +3,13 @@ from firebase_admin import auth
 import click
 from colorama import Style, Fore, Back, init
 
+## colors BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
+
 @click.group()
 def main():
     pass
 
 def print_style(text, fg=Fore.WHITE, bg=Back.BLACK, style=Style.BRIGHT):
-    # return click.echo(click.style((f'{text}'), fg=fg, bg=bg, blink=blink, bold=bold))
     return print(style + fg + bg + text)
 
 @main.command()
@@ -19,7 +20,7 @@ def users():
         user_email = user.email if hasattr(user, 'email') else None
         user_displayName = user.displayName if hasattr(user, 'displayName') else None
         text = f'{user.uid}, - , {user_email} - {user_displayName}'
-        print_style(text)
+        print_style(text, fg=Fore.MAGENTA)
 
 @main.command()
 @click.option('--uid', prompt='userId' ,help='firebase userid')
@@ -31,7 +32,7 @@ def user(uid):
     print('user: {0}'.format(user.__dict__))
     for k,v in user.__dict__['_data'].items():
         text = f'{k} -  {v}'
-        print_style(text)
+        print_style(text, fg=Fore.CYAN)
 
 @main.command()
 @click.option('--id', prompt="select a function to execute", type=click.IntRange(1,2))
@@ -55,6 +56,5 @@ if __name__ == '__main__':
     for x in funcs:
         y += 1
         text = f'[{y}] -  {x}'
-        # print(Style.BRIGHT + Fore.YELLOW + text)
-        print_style(text, fg=Fore.GREEN)
+        print_style(text, fg=Fore.YELLOW)
     menu()
